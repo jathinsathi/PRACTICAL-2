@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+#include <algorithm> // Required for std::sort
+
+// Vector must be sorted before calling this function
+int binarySearch(const std::vector<int>& arr, int target) {
+    int low = 0;
+    int high = arr.size() - 1;
+    
+    while (low <= high) {
+        // Prevents potential integer overflow compared to (low + high) / 2
+        int mid = low + (high - low) / 2; 
+        
+        if (arr[mid] == target) {
+            return mid; // Target found
+        }
+        if (arr[mid] < target) {
+            low = mid + 1; // Discard left half
+        } else {
+            high = mid - 1; // Discard right half
+        }
+    }
+    return -1; // Target not found
+}
+
+int main() {
+    std::vector<int> data = {12, 20, 24, 32, 45, 53, 56, 75, 99}; // Must be sorted
+    int target = 53;
+    
+    int result = binarySearch(data, target);
+    
+    if (result != -1) {
+        std::cout << "Element found at index: " << result << std::endl;
+    } else {
+        std::cout << "Element not found." << std::endl;
+    }
+    return 0;
+}
