@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+
+// Returns the index of the target if found, otherwise returns -1
+int linearSearch(const std::vector<int>& arr, int target) {
+    for (size_t i = 0; i < arr.size(); ++i) {
+        if (arr[i] == target) {
+            return i; // Target found
+        }
+    }
+    return -1; // Target not found
+}
+
+int main() {
+    std::vector<int> data = {24, 2, 45, 20, 56, 75, 2, 56, 99, 53, 12};
+    int target = 56;
+    
+    int result = linearSearch(data, target);
+    
+    if (result != -1) {
+        std::cout << "Element found at index: " << result << std::endl;
+    } else {
+        std::cout << "Element not found." << std::endl;
+    }
+    return 0;
+}
